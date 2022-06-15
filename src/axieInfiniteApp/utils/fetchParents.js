@@ -4,25 +4,25 @@ import normalizeAxie from "./normalizeAxie";
 function formatResponse({ data: { matron, sire } }) {
   return {
     matron: normalizeAxie(matron),
-    sire: normalizeAxie(sire),
+    sire: normalizeAxie(sire)
   };
 }
 
 export default function fetchParents({ matronId, sireId }) {
-  return fetch("https://axieinfinity.com/graphql-server-v2/graphql", {
+  return fetch("https://graphql-gateway.axieinfinity.com/graphql", {
     method: "post",
     headers: {
-      "content-type": "application/json",
+      "content-type": "application/json"
     },
     body: JSON.stringify({
       operationName: "GetParentsBrief",
       variables: {
         matronId,
-        sireId,
+        sireId
       },
       query:
-        "query GetParentsBrief($matronId: ID!, $sireId: ID!) {\n  matron: axie(axieId: $matronId) {\n    ...AxieBrief\n    __typename\n  }\n  sire: axie(axieId: $sireId) {\n    ...AxieBrief\n    __typename\n  }\n}\n\nfragment AxieBrief on Axie {\n  id\n  name\n  stage\n genes\n class\n  breedCount\n  image\n  title\n  battleInfo {\n    banned\n    __typename\n  }\n  auction {\n    currentPrice\n    currentPriceUSD\n    __typename\n  }\n  parts {\n    id\n   name\n    class\n   type\n    specialGenes\n    __typename\n  }\n  __typename\n}\n",
-    }),
+        "query GetParentsBrief($matronId: ID!, $sireId: ID!) {\n  matron: axie(axieId: $matronId) {\n    ...AxieBrief\n    __typename\n  }\n  sire: axie(axieId: $sireId) {\n    ...AxieBrief\n    __typename\n  }\n}\n\nfragment AxieBrief on Axie {\n  id\n  name\n  stage\n genes\n class\n  breedCount\n  image\n  title\n  battleInfo {\n    banned\n    __typename\n  }\n  auction {\n    currentPrice\n    currentPriceUSD\n    __typename\n  }\n  parts {\n    id\n   name\n    class\n   type\n    specialGenes\n    __typename\n  }\n  __typename\n}\n"
+    })
   })
     .then((res) => res.json())
     .then(formatResponse);

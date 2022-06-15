@@ -10,10 +10,10 @@ function fetchMarketPage({
   owner,
   ...rest
 }) {
-  return fetch("https://axieinfinity.com/graphql-server-v2/graphql", {
+  return fetch("https://graphql-gateway.axieinfinity.com/graphql", {
     method: "post",
     headers: {
-      "content-type": "application/json",
+      "content-type": "application/json"
     },
     body: JSON.stringify({
       operationName: "GetAxieBriefList",
@@ -40,10 +40,10 @@ function fetchMarketPage({
           skill: [],
           speed: [],
           morale: [],
-          ...rest,
-        },
-      },
-    }),
+          ...rest
+        }
+      }
+    })
   }).then((res) => res.json());
 }
 
@@ -58,7 +58,7 @@ export default async (props) => {
   try {
     let firstResponse = await fetchMarketPage({
       ...props,
-      from: 0 * 100,
+      from: 0 * 100
     });
 
     const { total } = firstResponse.data.axies;

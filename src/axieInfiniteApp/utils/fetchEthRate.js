@@ -2,25 +2,25 @@
 function formatResponse(res) {
   const {
     data: {
-      exchangeRate: { eth },
-    },
+      exchangeRate: { eth }
+    }
   } = res;
 
   return eth;
 }
 
 export default function fetchEthRate() {
-  return fetch("https://axieinfinity.com/graphql-server-v2/graphql", {
+  return fetch("https://graphql-gateway.axieinfinity.com/graphql", {
     method: "post",
     headers: {
-      "content-type": "application/json",
+      "content-type": "application/json"
     },
     body: JSON.stringify({
       operationName: "NewEthExchangeRate",
       query:
         "query NewEthExchangeRate {\n  exchangeRate {\n    eth {\n      usd\n      __typename\n    }\n    __typename\n  }\n}\n",
-      variables: {},
-    }),
+      variables: {}
+    })
   })
     .then((res) => res.json())
     .then(formatResponse);
