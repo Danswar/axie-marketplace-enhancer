@@ -5,14 +5,12 @@ import Fab from "@material-ui/core/Fab";
 import SearchIcon from "@material-ui/icons/Search";
 import FunctionsIcon from "@material-ui/icons/Functions";
 import ChildFriendlyIcon from "@material-ui/icons/ChildFriendly";
-import SchoolIcon from "@material-ui/icons/School";
 
 import SearchEngine from "./SearchEngine";
 import SearchResult from "./SearchEngine/SearchResult";
 import EggsSearchResult from "./SearchEngine/EggsSearchResult";
 import CryptoCalculator from "./CryptoCalculator";
 import Reload from "./Reload";
-import Valuation from "./Valuation";
 
 const useStyles = makeStyles({
   container: {
@@ -23,11 +21,11 @@ const useStyles = makeStyles({
     right: "10px",
     marginRight: "10px",
     marginBottom: "10px",
-    width: "fit-content",
+    width: "fit-content"
   },
   fabRoot: {
-    margin: "4px",
-  },
+    margin: "4px"
+  }
 });
 
 const FloatingPopover = ({ icon, children }) => {
@@ -62,11 +60,11 @@ const FloatingPopover = ({ icon, children }) => {
         onClose={handleClose}
         anchorOrigin={{
           vertical: "top",
-          horizontal: "left",
+          horizontal: "left"
         }}
         transformOrigin={{
           vertical: "bottom",
-          horizontal: "right",
+          horizontal: "right"
         }}
       >
         {children}
@@ -97,9 +95,7 @@ export default () => {
       >
         <ChildFriendlyIcon />
       </Fab>
-      <FloatingPopover icon={<SchoolIcon />}>
-        <Valuation />
-      </FloatingPopover>
+
       {false && <Reload />}
     </div>
   );
